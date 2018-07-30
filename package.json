@@ -1,5 +1,5 @@
 {
-  "name": "sso",
+  "name": "react-native-sso",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -18,5 +18,24 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "description": "handling login always a repetitive step. so why waste your time in every projects? Focus on your business and let us handle the login and registration part",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fattahmuhyiddeen/react-native-sso.git"
+  },
+  "keywords": [
+    "sso",
+    "login",
+    "register",
+    "seamless",
+    "auto"
+  ],
+  "author": "fattahmuhyiddeen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fattahmuhyiddeen/react-native-sso/issues"
+  },
+  "homepage": "https://github.com/fattahmuhyiddeen/react-native-sso#readme"
 }
