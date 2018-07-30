@@ -75,6 +75,11 @@ class App extends Component {
       modal.type = "login";
       this.setState({ modal });
     },
+    showRegister: () => {
+      const modal = this.state.modal;
+      modal.type = "register";
+      this.setState({ modal });
+    },
     showLoginSuccess: () => {
       const modal = this.state.modal;
       modal.type = "loginSuccess";

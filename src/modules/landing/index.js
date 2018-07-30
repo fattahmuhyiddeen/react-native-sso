@@ -44,6 +44,7 @@ class LandingScreen extends Component {
             <GoogleIcon color="white" size={30} />
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={store.action.showRegister}
             style={[styles.button, { backgroundColor: "grey" }]}
           >
             <Text style={{ fontSize: 20, color: "white" }}>

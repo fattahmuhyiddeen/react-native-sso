@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 import Login from "./login";
+import Register from "./register";
 import LoginSuccess from "./loginSuccess";
 
 const CustomModal = ({ store }) => {
@@ -24,6 +25,7 @@ const CustomModal = ({ store }) => {
       >
         {modal.type == "login" && <Login store={store} />}
         {modal.type == "loginSuccess" && <LoginSuccess store={store} />}
+        {modal.type == "register" && <Register store={store} />}
       </TouchableOpacity>
     </Modal>
   );
