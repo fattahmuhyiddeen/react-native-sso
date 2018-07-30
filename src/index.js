@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, Animated } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Resolution from "./style/Resolution";
 import PropTypes from "prop-types";
 import Routes from "./route";
+import Modal from "./modal";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      modal: {
+        type: ""
+      },
       routes: [Routes[0]],
       themeColor: props.themeColor,
       currency: props.currency,
@@ -65,7 +69,22 @@ class App extends Component {
       this.props.onBalanceChanged(balance);
     },
     selectReloadAmount: v =>
-      this.setState({ selectedReloadAmount: this.props.presetReloadAmount[v] })
+      this.setState({ selectedReloadAmount: this.props.presetReloadAmount[v] }),
+    showLogin: () => {
+      const modal = this.state.modal;
+      modal.type = "login";
+      this.setState({ modal });
+    },
+    showLoginSuccess: () => {
+      const modal = this.state.modal;
+      modal.type = "loginSuccess";
+      this.setState({ modal });
+    },
+    hideModal: () => {
+      const modal = this.state.modal;
+      modal.type = "";
+      this.setState({ modal });
+    }
   };
   //end action
 
@@ -84,8 +103,13 @@ class App extends Component {
 
   render() {
     console.log(this.state);
-    const { presetReloadAmount } = this.props;
-    const { routes } = this.state;
+    const { routes, modal } = this.state;
+    const store = {
+      navigation: this.navigation,
+      state: this.state,
+      select: this.select,
+      action: this.action
+    };
     const screens = [];
     for (let i = 0; i < routes.length; i += 1) {
       let offSetStyle = null;
@@ -102,19 +126,18 @@ class App extends Component {
           style={[styles.screen, offSetStyle]}
         >
           {React.createElement(routes[i].screen, {
-            store: {
-              navigation: this.navigation,
-              state: this.state,
-              select: this.select,
-              action: this.action,
-              presetReloadAmount
-            }
+            store
           })}
         </View>
       );
       screens.push(s);
     }
-    return <View style={styles.container}>{screens}</View>;
+    return (
+      <View style={styles.container}>
+        {screens}
+        <Modal store={store} />
+      </View>
+    );
   }
 }
 
@@ -137,7 +160,6 @@ App.propTypes = {
   themeColor: PropTypes.string,
   currency: PropTypes.string,
   balance: PropTypes.number,
-  presetReloadAmount: PropTypes.array,
   onBalanceChanged: PropTypes.func
 };
 
@@ -146,14 +168,6 @@ App.defaultProps = {
   themeColor: "#3B4A5C",
   currency: "MYR",
   initialBalance: 0,
-  onBalanceChanged: balance => null,
-  presetReloadAmount: [
-    { amount: "3" },
-    { amount: "5" },
-    { amount: "10" },
-    { amount: "20" },
-    { amount: "50" },
-    { amount: "100" }
-  ]
+  onBalanceChanged: balance => null
 };
 export default App;

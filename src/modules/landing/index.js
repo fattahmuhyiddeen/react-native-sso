@@ -54,7 +54,7 @@ class LandingScreen extends Component {
           <View style={{ flexDirection: "row", marginTop: 20 }}>
             <Text style={{}}>Already have an account?</Text>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={store.action.showLogin}>
               <Text style={{ textDecorationLine: "underline" }}>
                 Login Here
               </Text>
