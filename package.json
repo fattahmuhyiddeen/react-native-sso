@@ -18,7 +18,7 @@
   "jest": {
     "preset": "react-native"
   },
-  "description": "handling login always a repetitive step. so why waste your time in every projects? Focus on your business and let us handle the login and registration part",
+  "description": "Handling login always a repetitive step. so why waste your time in every projects? Focus on your business and let us handle the login and registration part",
   "main": "index.js",
   "repository": {
     "type": "git",
